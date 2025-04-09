@@ -1,0 +1,37 @@
+ #root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+ }
+header{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width: 90%;  
+    
+ }
+.form {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+ }
+
+button {
+    margin-top: 18px;
+
+ }
+ main {
+  width: 100%;
+ }
+
+ ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1em;
+ }
+
+ li {
+  list-style: none;
+ }
