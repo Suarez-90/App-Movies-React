@@ -4,17 +4,17 @@ import { useMovies } from './hooks/useMovies';
 import { useSearch } from './hooks/useSearch';
 
 function App() {
-  const { error, search, setSearch } = useSearch()
-  const { mappedMovies} = useMovies()
+  const { error, search, setSearch } = useSearch()  
+  const { movies, getMovies} = useMovies({search})
 
   const handleSubmit = (e)=>{
     e.preventDefault()
+    getMovies()
     
   }
   const handleChange = (e)=> {
     const newName = e.target.value
     setSearch(newName) 
-    console.log(newName)
   }
   
   return (
@@ -30,7 +30,7 @@ function App() {
         {error && <p style={{color:'red', marginTop:0}}>{error}</p>}        
       </header>
       <main className="main">
-        <Movies movies= {mappedMovies}/>
+        <Movies movies= {movies}/>
       </main>      
     </>
   )

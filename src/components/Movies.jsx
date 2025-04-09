@@ -23,8 +23,8 @@ function noMovies (){
 }
 
 export function Movies ({movies}) {
-    const hasMovies = movies.length > 0
+    const hasMovies = movies.length > 0 ? listOfMovies({movies}) : noMovies() 
     return (  
-        hasMovies ? listOfMovies({movies}) : noMovies 
+        hasMovies 
     );
 } 
