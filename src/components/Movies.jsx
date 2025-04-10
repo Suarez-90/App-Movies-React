@@ -19,11 +19,11 @@ function listOfMovies ({movies}) {
 }
 
 function noMovies (){
-    return NoListMovies.Error
+    return <h2>{NoListMovies.Error}</h2> 
 }
 
 export function Movies ({movies}) {
-    const hasMovies = movies.length > 0 ? listOfMovies({movies}) : noMovies() 
+    const hasMovies = movies?.length > 0 ? listOfMovies({movies}) : noMovies() 
     return (  
         hasMovies 
     );
