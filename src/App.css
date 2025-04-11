@@ -24,16 +24,28 @@ button {
  }
  main {
   margin-top: 1rem;
-  width: 100%;
+  width: 80%;
   text-align: center;
  }
 
  ul {
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1em;
+  padding-left: 0;
  }
 
  li {
   list-style: none;
+  
+  img {
+    border-radius: 1em;
+    transition: transform 200ms ease-in;    
+  }
+  img:hover {
+      transform: scale(1.05);
+      overflow: hidden;
+    }
+  
  }
