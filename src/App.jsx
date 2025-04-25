@@ -1,14 +1,17 @@
 import './App.css'
 import { Movies } from './components/Movies';
+import useDebounce from './hooks/useDebounce';
 import { useMovies } from './hooks/useMovies';
 import { useSearch } from './hooks/useSearch';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [sort, setSort] = useState()
   const { error, search, setSearch } = useSearch()  
   const { movies, loading, getMovies} = useMovies({search, sort})
+  const debounceSearch = useDebounce(search, 500)
 
+  
   const handleSubmit = (e)=>{
     e.preventDefault()
     getMovies({search})
@@ -17,7 +20,14 @@ function App() {
   const handleChange = (e)=> {
     const newName = e.target.value
     setSearch(newName) 
+    
   }
+
+  useEffect(() => {
+    if (debounceSearch) {
+      getMovies(debounceSearch)
+    }
+  }, [debounceSearch]);
 
   const handleSort = ()=> {
     setSort(!sort)
