@@ -11,6 +11,7 @@ export function useSearch() {
             isFirstInput.current = search===''
             return
         }
+        
         if (search === '') {
          setError('No se puede buscar una Película en blanco')
          return

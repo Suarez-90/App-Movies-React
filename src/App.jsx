@@ -9,7 +9,7 @@ function App() {
   const [sort, setSort] = useState()
   const { error, search, setSearch } = useSearch()  
   const { movies, loading, getMovies} = useMovies({search, sort})
-  const debounceSearch = useDebounce(search, 500)
+  const debounceSearch = useDebounce(search, 350)
 
   
   const handleSubmit = (e)=>{
@@ -19,15 +19,15 @@ function App() {
   }
   const handleChange = (e)=> {
     const newName = e.target.value
-    setSearch(newName) 
-    
+    if (newName.startsWith(' ')) return
+    setSearch(newName)    
   }
 
   useEffect(() => {
     if (debounceSearch) {
-      getMovies(debounceSearch)
+      getMovies({search:debounceSearch})
     }
-  }, [debounceSearch]);
+  }, [getMovies, debounceSearch]);
 
   const handleSort = ()=> {
     setSort(!sort)
@@ -41,12 +41,12 @@ function App() {
         <label>Movie Name:
         <input type="text" value={search} onChange={handleChange} placeholder='Avenger, Hulk, ...'/>
         </label>
-        <button>Search</button>
+        <button disabled={loading}>Search</button>
         {
         movies?.length > 0 && 
         <label>
           <input type="checkbox" onChange={handleSort} value={sort} name="sortMovies" id="sort" />
-          Sort Movies by Name
+          Sort by Name
         </label>
         }
         </form>
